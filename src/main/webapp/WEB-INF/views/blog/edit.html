@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Blog</title>
+</head>
+<body>
+<h1>Update Blog</h1>
+<p><a th:href="@{/blogs}">Back to Blog's</a></p>
+
+<p th:if="${message}">
+    <span th:text="${message}"></span>
+</p>
+<form th:action="@{/blogs/update}" method="post" th:object="${blog}">
+    <table>
+        <input type="text" hidden th:field="*{id}">
+        <tr>
+            <td>Tittle</td>
+            <td><input type="text" th:field="*{tittle}" ></td>
+        </tr>
+        <tr>
+            <td>Content</td>
+            <td><input type="text" th:field="*{content}" ></td>
+        </tr>
+        <tr>
+            <td>Image</td>
+            <td><input type="text" th:field="*{image}" ></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Save"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

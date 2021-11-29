@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Blog's Cuong Tien</h1>
+<p><a th:href="@{/blogs}">Back to Blog's</a></p>
+<table border="1" th:object="${blog}">
+    <tr>
+        <th>Tittle</th>
+        <td th:text="${blog.tittle}"></td>
+    </tr>
+    <tr>
+        <th>Content</th>
+        <td th:text="${blog.content}"></td>
+    </tr>
+    <tr>
+        <th>Img</th>
+        <td th:src="${blog.image}"></td>
+    </tr>
+</table>
+</body>
+</html>
