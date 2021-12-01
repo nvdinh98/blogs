@@ -10,7 +10,7 @@ public class Blog {
     private Long id;
     private String tittle;
     private String content;
-    private String image;
+    private String file;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -21,24 +21,24 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog(String tittle, String content, String image, Category category) {
+    public Blog(String tittle, String content, String file, Category category) {
         this.tittle = tittle;
         this.content = content;
-        this.image = image;
+        this.file = file;
         this.category = category;
     }
 
-    public Blog(String tittle, String content, String image) {
+    public Blog(String tittle, String content, String file) {
         this.tittle = tittle;
         this.content = content;
-        this.image = image;
+        this.file = file;
     }
 
-    public Blog(Long id, String tittle, String content, String image) {
+    public Blog(Long id, String tittle, String content, String file) {
         this.id = id;
         this.tittle = tittle;
         this.content = content;
-        this.image = image;
+        this.file = file;
     }
 
     public Long getId() {
@@ -65,12 +65,12 @@ public class Blog {
         this.content = content;
     }
 
-    public String getImage() {
-        return image;
+    public String getFile() {
+        return file;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setFile(String file) {
+        this.file = file;
     }
     public Category getCategory() {
         return category;
@@ -85,7 +85,7 @@ public class Blog {
                 "id=" + id +
                 ", tittle='" + tittle + '\'' +
                 ", content='" + content + '\'' +
-                ", image='" + image + '\'' +
+                ", image='" + file + '\'' +
                 '}';
     }
 }

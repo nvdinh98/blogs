@@ -17,8 +17,8 @@
         <td ><textarea th:text="${blog.content}"></textarea></td>
     </tr>
     <tr>
-        <th>Img</th>
-        <td ><img th:src="${blog.image}" alt=""></td>
+        <th>File</th>
+        <td ><a th:href="@{'/file/'+ ${blog.file}}">Link</a></td>
     </tr>
     <tr>
         <th>Category</th>

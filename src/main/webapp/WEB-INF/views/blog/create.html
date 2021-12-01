@@ -10,7 +10,7 @@
 <p th:if="${message}">
     <span th:text="${message}"></span>
 </p>
-<form th:action="@{/blogs/create}" method="post" th:object="${blog}">
+<form th:action="@{/blogs/create}" method="post" th:object="${blogForm}" enctype="multipart/form-data">
     <table>
         <tr>
             <td>Tittle</td>
@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td>Image</td>
-            <td><input type="text" th:field="*{image}" placeholder="image url"></td>
+            <td><input type="file" th:field="*{file}" ></td>
         </tr>
         <tr>
             <select th:field="*{category}">
