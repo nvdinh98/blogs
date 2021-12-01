@@ -12,7 +12,20 @@ public class Blog {
     private String content;
     private String image;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+
+
     public Blog() {
+    }
+
+    public Blog(String tittle, String content, String image, Category category) {
+        this.tittle = tittle;
+        this.content = content;
+        this.image = image;
+        this.category = category;
     }
 
     public Blog(String tittle, String content, String image) {
@@ -59,7 +72,13 @@ public class Blog {
     public void setImage(String image) {
         this.image = image;
     }
+    public Category getCategory() {
+        return category;
+    }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
     @Override
     public String toString() {
         return "Blog{" +

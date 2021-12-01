@@ -25,10 +25,19 @@
             <td><input type="text" th:field="*{image}" placeholder="image url"></td>
         </tr>
         <tr>
+            <select th:field="*{category}">
+                <option th:each="cate: ${categories}"
+                th:text="${cate.name}"
+                th:value="${cate.id}"></option>
+            </select>
+
+        </tr>
+        <tr>
             <td></td>
             <td><input type="submit" value="Save"></td>
         </tr>
     </table>
+
 </form>
 </body>
 </html>

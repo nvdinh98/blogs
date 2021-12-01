@@ -20,6 +20,10 @@
         <th>Img</th>
         <td ><img th:src="${blog.image}" alt=""></td>
     </tr>
+    <tr>
+        <th>Category</th>
+        <td th:text="${blog.category.name}"></td>
+    </tr>
 </table>
 </body>
 </html>

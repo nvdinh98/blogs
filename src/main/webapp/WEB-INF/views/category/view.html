@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:object="${category}">
+    <p th:text=" 'Blog\'s of Category:'+ ${category.name}"></p>
+</h3>
+<table border="1">
+<tr>
+    <th>Tittle</th>
+</tr>
+    <tr th:each="blog: ${blogs}">
+        <td  th:text="${blog.tittle}"></td>
+    </tr>
+</table>
+</body>
+</html>

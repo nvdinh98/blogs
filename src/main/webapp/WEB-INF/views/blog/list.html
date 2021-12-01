@@ -12,17 +12,20 @@
 </p>
 <table border="1">
     <tr>
-        <th>No</th>
         <th>Tittle</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    <tr th:each="blog : ${blogList}">
-        <td th:field="*{blog.id}"></td>
+    <tr th:each="blog : ${blogs}">
         <td ><a th:href="@{/blogs/view/__${blog.id}__}" th:text="${blog.tittle}"></a></td>
         <td><a th:href="@{/blogs/edit/__${blog.id}__}">Edit</a></td>
         <td><a th:href="@{/blogs/delete/__${blog.id}__}">Delete</a></td>
     </tr>
 </table>
+<div>
+    <a th:href="@{'/blogs'(page=${blogs.number-1})}" th:if="${blogs.hasPrevious()}">Previous</a>
+    <span th:text="${blogs.number+1}"></span>/<span th:text="${blogs.totalPages}"></span>
+    <a th:href="@{'/blogs'(page=${blogs.number+1})}" th:if="${blogs.hasNext()}">Next</a>
+</div>
 </body>
 </html>
