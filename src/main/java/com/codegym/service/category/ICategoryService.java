@@ -1,5 +1,6 @@
 package com.codegym.service.category;
 
+import com.codegym.exception.NotFoundException;
 import com.codegym.model.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ public interface ICategoryService {
 
     Iterable<Category> findAll();
 
-    Optional<Category> findById(Long id);
+    Optional<Category> findById(Long id) throws NotFoundException;
 
     void save(Category province);
 

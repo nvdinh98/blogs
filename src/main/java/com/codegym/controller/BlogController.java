@@ -1,5 +1,6 @@
 package com.codegym.controller;
 
+import com.codegym.exception.NotFoundException;
 import com.codegym.model.Blog;
 import com.codegym.model.BlogForm;
 import com.codegym.model.Category;
@@ -69,13 +70,17 @@ public class BlogController {
         modelAndView.addObject("message", "New Blog was created!");
         return modelAndView;
     }
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView showViewNotFound() {
+        return new ModelAndView("error.404");
+    }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView showEditForm(@PathVariable Long id) {
+    public ModelAndView showEditForm(@PathVariable Long id) throws NotFoundException {
         Optional<Blog> blog = blogService.findById(id);
-        ModelAndView modelAndView = new ModelAndView("blog/edit");
-        modelAndView.addObject("blog", blog.get());
-        return modelAndView;
+            ModelAndView modelAndView = new ModelAndView("blog/edit");
+            modelAndView.addObject("blog", blog.get());
+            return modelAndView;
     }
 
     @PostMapping("/update")
@@ -95,10 +100,10 @@ public class BlogController {
     }
 
     @GetMapping("/view/{id}")
-    public ModelAndView view(@PathVariable Long id) {
+    public ModelAndView view(@PathVariable Long id) throws NotFoundException {
         Optional<Blog> blog = blogService.findById(id);
-        ModelAndView modelAndView = new ModelAndView("blog/view");
-        modelAndView.addObject("blog", blog.get());
-        return modelAndView;
+            ModelAndView modelAndView = new ModelAndView("blog/view");
+            modelAndView.addObject("blog", blog.get());
+            return modelAndView;
     }
 }

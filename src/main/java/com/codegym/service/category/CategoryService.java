@@ -1,5 +1,6 @@
 package com.codegym.service.category;
 
+import com.codegym.exception.NotFoundException;
 import com.codegym.model.Category;
 import com.codegym.repository.category.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,15 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public Optional<Category> findById(Long id) {
-        return categoryRepository.findById(id);
+    public Optional<Category> findById(Long id) throws NotFoundException {
+       Optional<Category> category = categoryRepository.findById(id);
+       if (category.isPresent()){
+           return category;
+       }
+       else {
+           throw new NotFoundException();
+       }
+
     }
 
     @Override

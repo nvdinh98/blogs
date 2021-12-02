@@ -1,5 +1,6 @@
 package com.codegym.service.blog;
 
+import com.codegym.exception.NotFoundException;
 import com.codegym.model.Blog;
 import com.codegym.model.Category;
 import com.codegym.repository.blog.IBlogRepository;
@@ -32,8 +33,16 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public Optional<Blog> findById(Long id) {
-        return blogRepository.findById(id);
+    public Optional<Blog> findById(Long id) throws NotFoundException {
+
+          Optional<Blog> blog = blogRepository.findById(id);
+          if (blog.isPresent()){
+              return blog;
+          }
+          else {
+              throw new NotFoundException();
+          }
+
     }
 
     @Override
