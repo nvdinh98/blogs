@@ -7,7 +7,7 @@
 <body>
 <h1>Edit Category</h1>
 <h3><a th:href="@{/categories}">back to category list</a></h3>
-<form th:action="@{/edit}" method="post" th:object="${category}">
+<form th:action="@{/categories/edit}" method="post" th:object="${category}">
     <input type="text" hidden th:field="*{id}">
     <table>
         <tr>

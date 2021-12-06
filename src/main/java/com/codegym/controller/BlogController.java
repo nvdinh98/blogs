@@ -79,17 +79,37 @@ public class BlogController {
     public ModelAndView showEditForm(@PathVariable Long id) throws NotFoundException {
         Optional<Blog> blog = blogService.findById(id);
             ModelAndView modelAndView = new ModelAndView("blog/edit");
-            modelAndView.addObject("blog", blog.get());
+            BlogForm blogForm = new BlogForm();
+            blogForm.setId(blog.get().getId());
+            blogForm.setTittle(blog.get().getTittle());
+            blogForm.setContent(blog.get().getContent());
+            blogForm.setCategory(blog.get().getCategory());
+            modelAndView.addObject("blogForm", blogForm);
+            modelAndView.addObject("blog",blog);
             return modelAndView;
     }
 
     @PostMapping("/update")
-    public ModelAndView update(@ModelAttribute Blog blog) {
-        blogService.save(blog);
-        ModelAndView modelAndView = new ModelAndView("blog/edit");
-        modelAndView.addObject("blog", blog);
-        modelAndView.addObject("message", "Blog was updated");
-        return modelAndView;
+    public ModelAndView update(@ModelAttribute BlogForm blogForm) throws NotFoundException {
+        MultipartFile multipartFile = blogForm.getFile();
+        Optional<Blog> blog1 = blogService.findById(blogForm.getId());
+        String fileName;
+        if(multipartFile.isEmpty()){
+            fileName = blog1.get().getFile();
+        }else {
+            fileName = multipartFile.getOriginalFilename();
+        }
+            try {
+                FileCopyUtils.copy(blogForm.getFile().getBytes(), new File(fileUpload + fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Blog blog = new Blog(blogForm.getId(),blogForm.getTittle(), blogForm.getContent(), fileName, blogForm.getCategory());
+            blogService.save(blog);
+            ModelAndView modelAndView = new ModelAndView("blog/edit");
+            modelAndView.addObject("blogForm", blogForm);
+            modelAndView.addObject("message", "New Blog was updated!");
+            return modelAndView;
     }
 
     @GetMapping("/delete/{id}")

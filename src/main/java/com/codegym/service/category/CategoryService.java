@@ -34,7 +34,6 @@ public class CategoryService implements ICategoryService {
        else {
            throw new NotFoundException();
        }
-
     }
 
     @Override

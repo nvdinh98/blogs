@@ -1,10 +1,11 @@
 package com.codegym.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "blog")
-public class Blog {
+public class Blog implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,10 +22,25 @@ public class Blog {
     public Blog() {
     }
 
+    public Blog(Long id, String tittle, String content, String file, Category category) {
+        this.id = id;
+        this.tittle = tittle;
+        this.content = content;
+        this.file = file;
+        this.category = category;
+    }
+
     public Blog(String tittle, String content, String file, Category category) {
         this.tittle = tittle;
         this.content = content;
         this.file = file;
+        this.category = category;
+    }
+
+    public Blog(Long id, String tittle, String content, Category category) {
+        this.id = id;
+        this.tittle = tittle;
+        this.content = content;
         this.category = category;
     }
 
