@@ -24,7 +24,7 @@ public class CategoryController {
     @Autowired
     private IBlogRepository blogRepository;
     @GetMapping("")
-    public ModelAndView list(@PageableDefault(value = 2) Pageable pageable){
+    public ModelAndView list(@PageableDefault(value = 5) Pageable pageable){
       Page<Category> categories = categoryService.findAll(pageable);
       ModelAndView modelAndView = new ModelAndView("category/list");
       modelAndView.addObject("categories",categories);

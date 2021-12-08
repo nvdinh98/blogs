@@ -34,7 +34,7 @@ public class BlogController {
     private ICategoryService categoryService;
 
     @GetMapping("")
-    public ModelAndView showList(@PageableDefault(value = 2) Pageable pageable) {
+    public ModelAndView showList(@PageableDefault(value = 5) Pageable pageable) {
         Page<Blog> blogs = blogService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("blog/list");
         modelAndView.addObject("blogs", blogs);
